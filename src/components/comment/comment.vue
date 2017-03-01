@@ -47,7 +47,7 @@
         },
         methods:{
             isvalue(value) {
-                return value?value.value:0
+                return value?(value.value)*2:0
             },
         },
         components:{
