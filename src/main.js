@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 //导入ajax请求vue-resource
 import VueResource from 'vue-resource'
 import store from './store'
+
 Vue.use(VueRouter)
 Vue.use(VueResource)
 //导入各个组件

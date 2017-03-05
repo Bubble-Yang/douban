@@ -1,6 +1,6 @@
 <template>
     <div class="particulars" ref="particulars">
-        <div class="particulars-v">
+        <div class="particulars-v" v-if="noLoading">
             <div class="header">
                 <h3 class="title">{{detailsdata.title}}</h3>
                 <div class="ptl-comt">
@@ -43,8 +43,11 @@
                     {{detailsdata.summary}}
                 </p>
             </div>
-            <comment :title="title" :commentObj="commentObj"></comment>
+            <comment :title="title" :commentObj="commentObj" v-if="readableComt"></comment>
             <readable :readableArr="readableArr" v-if="readableComt"></readable>
+        </div>
+        <div class="loading" v-else>
+            <img src="../../common/img/loading.gif" class="loading-img">
         </div>
     </div>
 </template>
@@ -68,7 +71,8 @@
                 title:null,
                 commentObj:{},
                 readableArr:[],
-                readableComt:false
+                readableComt:false,
+                noLoading:false
             }
         },
         methods: {
@@ -79,7 +83,8 @@
                             this.detailsdata =res.body;
                             this.image =res.body.images.large;
                             this.score =res.body.rating.average;
-                                this.title =res.body.title
+                            this.title =res.body.title;
+                            this.noLoading =true
                         });
                     this.$http.jsonp(urlObj.murl+'/v2/movie/'+this.$route.params.id+'/interests')
                         .then(res=>{
@@ -88,7 +93,7 @@
                     this.$http.jsonp(urlObj.murl+'/v2/selection/themes/explore?themes=16%2C10%2C19%2C20%2C6%2C15%2C12&for_mobile=0').then(res=>{
                         this.readableArr =res.body.items;
                         this.readableComt=true
-                    });
+                    })
 
                 }else if(this.name==="books"){
                     this.$http.jsonp(urlObj.url+'/v2/book/'+this.$route.params.id)
@@ -97,7 +102,8 @@
                             this.numRaters =res.body.rating.numRaters;
                             this.image =res.body.images.large;
                             this.score =res.body.rating.average;
-                            this.title =res.body.title
+                            this.title =res.body.title;
+                            this.noLoading =true
                         })
                     this.$http.jsonp(urlObj.murl+'/v2/book/'+this.$route.params.id+'/interests')
                         .then(res=>{

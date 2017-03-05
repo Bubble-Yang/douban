@@ -2,7 +2,7 @@
     <div class="broadcast-box">
         <div class="broadcastlist" v-for="item of broadcastArr">
             <div class="broadcastlist-left">
-                <img :src="item.status.author.avatar" alt="" class="broadcastlist-left-img">
+                <img :src="'http://shing.imwork.net/proxyImg?url='+item.status.author.avatar" alt="" class="broadcastlist-left-img">
             </div>
             <div class="broadcastlist-right">
                 <p class="name">{{item.status.author.name}}<span class="write">{{item.status.activity}}</span></p>

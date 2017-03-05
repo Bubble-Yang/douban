@@ -2,7 +2,7 @@
     <div id="box">
         <div class="mui-content" style="background-color:#fff">
             <h5 class="title">为你推荐</h5>
-            <ul class="mui-table-view mui-grid-view">
+            <ul class="mui-table-view mui-grid-view" id="one">
                 <li class="mui-table-view-cell mui-media mui-col-xs-4" v-for="(val,index,key) in listData">
                     <router-link v-bind="{to:'/cloudDetial/'+val.name+'/'+val.id}">
                         <img class="mui-media-object" :src="val.picUrl">
@@ -11,7 +11,7 @@
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4">
             </ul>
-            <div class="loading" v-show="listData ==false">
+            <div class="loading" v-if="listData ==false">
                 <img src="../../common/img/loading.gif" class="loading-img">
             </div>
         </div>

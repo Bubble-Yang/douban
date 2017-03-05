@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div class="loading" v-show="moviebooklist == false">
+        <div class="loading" v-if="moviebooklist == false">
             <img src="../../common/img/loading.gif" class="loadingimg">
         </div>
     </div>

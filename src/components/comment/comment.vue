@@ -37,10 +37,20 @@
                 type:Object
             },
         },
+        computed:{
+            total() {
+                if(this.title){
+                    return this.commentObj.total
+                }
+            },
+            commentList() {
+                if(this.commentObj){
+                    return this.commentObj.interests
+                }
+            }
+        },
         data() {
             return {
-                total:null,
-                commentList:null,
                 size:24,
                 judge:false
             }
@@ -52,10 +62,6 @@
         },
         components:{
             star
-        },
-        beforeUpdate() {
-            this.total =this.commentObj.total;
-            this.commentList =this.commentObj.interests;
         }
     }
 </script>

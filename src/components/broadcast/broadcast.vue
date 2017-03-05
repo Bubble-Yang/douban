@@ -11,7 +11,7 @@
             </div>
         </div>
         <broadcastlist :broadcastArr="broadcastArr" v-if="gaintf"></broadcastlist>
-        <div class="loading" v-show="!gaintf">
+        <div class="loading" v-if="!gaintf">
             <img src="../../common/img/loading.gif" class="loading-img">
         </div>
         <a href="javascript:void(0)" class="more" v-if="gaintf">显示更多广播</a>
@@ -37,13 +37,10 @@
                         this.broadcastArr =res.body.items;
                         this.gaintf=true
                     })
-            }
+            },
 //            getMore() {
 //                this.page++;
-//                this.$http.jsonp(urlObj.murl+'/v2/status/anonymous_timeline?max_id=&ck=&for_mobile='+this.page)
-//                    .then(res=>{
-//                        console.log(res.body.items);
-//                    })
+//                this.getbroadcast();
 //            }
         },
         created() {

@@ -47,7 +47,7 @@
             }
         },
         methods:{
-            //点击关闭按钮犯规
+            //点击关闭按钮返回
             show() {
                 this.$router.push({ path: '/movie' })
             },
