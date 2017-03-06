@@ -1,8 +1,8 @@
 <template>
     <div id="box">
-        <div class="mui-content" style="background-color:#fff">
+        <div class="mui-content" style="background-color:#fff" v-show="loading">
             <h5 class="title">为你推荐</h5>
-            <ul class="mui-table-view mui-grid-view" id="one">
+            <ul class="mui-table-view mui-grid-view">
                 <li class="mui-table-view-cell mui-media mui-col-xs-4" v-for="(val,index,key) in listData">
                     <router-link v-bind="{to:'/cloudDetial/'+val.name+'/'+val.id}">
                         <img class="mui-media-object" :src="val.picUrl">
@@ -11,19 +11,19 @@
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4">
             </ul>
-            <div class="loading" v-if="listData ==false">
-                <img src="../../common/img/loading.gif" class="loading-img">
-            </div>
         </div>
+        <loading v-if="!loading"></loading>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import loading from '../loading/loading.vue'
     export default {
         data() {
             return {
                 listID:['8325','6452','2116','3684','6457','12985','6453','6652','9548','8926','10204','2849','7652','3702','6459','5538','12437','8326'],//歌手id
-                listData:[]//请求回来的数据
+                listData:[],//请求回来的数据
+                loading:false
             }
         },
         methods:{
@@ -42,10 +42,20 @@
             sendData(id){
                 //点击事件跳转路由
                 this.$router.push({name:'cloudDetial',params:{cloudID:id}})
+            },
+            toLoad() {
+                let vm =this;
+                setTimeout(() => {
+                    vm.loading =true
+                },2000)
             }
         },
         created(){
             this.getData();
+            this.toLoad();
+        },
+        components:{
+            loading
         }
     }
 </script>
@@ -69,10 +79,6 @@
                 height: 36px
                 line-height: 36px
                 padding-left 14px
-            .loading
-                width :100%
-                .loading-img
-                    width: 100%
         .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body
             margin-top :5px
             color :#aaa

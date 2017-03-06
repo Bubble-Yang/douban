@@ -1,6 +1,7 @@
 <template>
     <div class="MDshow">
-        <img :src="'http://shing.imwork.net/proxyImg?url='+items.cover.url" alt="" width="100" height="140">
+        <!--<img :src="'http://shing.imwork.net/proxyImg?url='+items.cover.url" alt="" width="100" height="140">-->
+        <img :src="items.cover.url" alt="" width="100" height="140">
         <p class="text">{{items.title}}</p>
         <star :size="size" :score="isvalue(items.rating)" v-if="items.id"></star>
         <p v-if="items.id == ''" class="price">¥{{items.price}}</p>

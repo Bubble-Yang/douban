@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <ul class="mui-table-view mui-table-view-chevron">
+        <ul class="mui-table-view mui-table-view-chevron" v-show="loading">
             <li class="mui-table-view-cell mui-media" v-for="(val,index,key) in dataList">
                 <router-link class="mui-navigate-right" v-bind="{to:'/cloudSong/'+val.id+'/'+index}">
                     <img class="mui-media-object mui-pull-left" :src="val.al.picUrl" >
@@ -11,15 +11,18 @@
                 </router-link>
             </li>
         </ul>
+        <loading v-if="!loading"></loading>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
+    import loading from '../loading/loading.vue'
     export default{
         data(){
             return{
                 dataList:[],//数据数组
-                name:''//请求名字
+                name:'',//请求名字
+                loading:false
             }
         },
         methods:{
@@ -37,12 +40,22 @@
                     let song = JSON.stringify(this.dataList);
                     //保存到本地
                     window.localStorage.setItem('song',song);
-            })
+                })
+            },
+            toLoad() {
+                let vm =this;
+                setTimeout(() => {
+                    vm.loading =true
+                },3000)
             }
+        },
+        components:{
+            loading
         },
         created(){
             //初始调用
             this.getData();
+            this.toLoad()
         }
     }
 </script>
@@ -51,6 +64,4 @@
     .box
         width: 100%
         padding 40px 0 60px 0
-        background-color: #efeff4
-
 </style>

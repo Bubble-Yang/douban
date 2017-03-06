@@ -1,27 +1,27 @@
 <template>
     <div class="broadcast">
-        <div class="header">
-            <div class="header-left">
-                <img src="../../common/img/user_normal.jpg" alt="" class="header-img">
+        <div v-if="gaintf">
+            <div class="header">
+                <div class="header-left">
+                    <img src="../../common/img/user_normal.jpg" alt="" class="header-img">
+                </div>
+                <div class="header-right">
+                    <span class="header-text">登陆发广播</span>
+                    <span class="iconfont icon-xiangji"></span>
+                    <span class="iconfont icon-xie"></span>
+                </div>
             </div>
-            <div class="header-right">
-                <span class="header-text">登陆发广播</span>
-                <span class="iconfont icon-xiangji"></span>
-                <span class="iconfont icon-xie"></span>
-            </div>
+            <broadcastlist :broadcastArr="broadcastArr"></broadcastlist>
+            <a href="javascript:void(0)" class="more">显示更多广播</a>
         </div>
-        <broadcastlist :broadcastArr="broadcastArr" v-if="gaintf"></broadcastlist>
-        <div class="loading" v-if="!gaintf">
-            <img src="../../common/img/loading.gif" class="loading-img">
-        </div>
-        <a href="javascript:void(0)" class="more" v-if="gaintf">显示更多广播</a>
-
+        <loading v-else></loading>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import broadcastlist from '../broadcastlist/broadcastlist.vue'
     import urlObj from '../../common/js/geturl'
+    import loading from '../loading/loading.vue'
     export default {
         data() {
             return {
@@ -47,7 +47,8 @@
             this.getbroadcast()
         },
         components:{
-            broadcastlist
+            broadcastlist,
+            loading
         }
     }
 </script>
@@ -84,10 +85,6 @@
                     margin-right :10px
                 .icon-xiangji
                     font-size :30px
-        .loading
-            width :100%
-            .loading-img
-                width: 100%
         .more
             display :block
             padding :10px 0px

@@ -6,7 +6,7 @@
         </div>
         <div v-if="paper == 'promBook'" class="promBook">
             <a :href="header.url" class="promBookBox">
-                <img :src="'http://shing.imwork.net/proxyImg?url='+headerImg" alt="" class="promImg">
+                <img :src="headerImg" alt="" class="promImg">
                 <div class="content">
                     <div class="title">
                         <span class="name">{{header.title}}</span>
@@ -20,29 +20,22 @@
             <ul class="pics-list" ref="piclist">
                 <li class="picLi" v-for="item in moviebooklist">
                     <router-link href="" class="godetails" v-bind="{to:'/particulars/'+name+'/'+item.id}">
-                        <!--<img :src="item.cover.url" alt="" width="100" height="140">-->
-                        <!--<p class="text">{{item.title}}</p>-->
-                        <!--<star :size="size" :score="isvalue(item.rating)"></star>-->
                         <MBshow :item="item"></MBshow>
                     </router-link>
                 </li>
             </ul>
         </div>
-        <div class="loading" v-if="moviebooklist == false">
-            <img src="../../common/img/loading.gif" class="loadingimg">
-        </div>
+
     </div>
 </template>
 
 <script type="text/ecmascript-6">
     import BScroll from 'better-scroll'
     import urlObj from '../../common/js/geturl'
-//    import star from '../star/star.vue'
     import MBshow from '../MBshow/MBshow.vue'
     export default {
         props:{
             getdata:{
-//                type:Object
                 type:String
             },
             name:{
@@ -68,13 +61,6 @@
             }
         },
         methods: {
-//            gethotmovie() {
-//                this.$http.jsonp(urlObj.url + this.getdata.url,{params:{apikey:'00fa6c0654689a0202ef4412fd39ce06'}})
-//                    .then(res => {
-//                        this.hotmovielist = res.body.subjects;
-//
-//                    })
-//            },
             getmovieanbook(){
                 this.$http.jsonp(urlObj.murl+this.getdata)
                     .then(res=>{
@@ -91,9 +77,6 @@
                         }
                     })
             },
-//            isvalue(value) {
-//                return value?value.value:0
-//            },
             initPics() {
                 let picWidth = 100;
                 let margin = 6;
@@ -105,23 +88,13 @@
                 });
             }
         },
-//        watch: {
-//            'getmovieanbook':function (newVal,oldVal) {
-//                if(newVal){
-//                    console.log(newVal);
-//                    this.initPics()
-//                }
-//            }
-//        },
         created() {
               this.getmovieanbook();
-//            this.gethotmovie()
         },
         beforeUpdate(){
             this.initPics()
         },
         components:{
-//            star,
             MBshow
         }
     }
@@ -149,14 +122,6 @@
                     width: 100px
                     .godetails
                         display :block
-        .loading
-            width: 100%
-            height: 187px
-            text-align :center
-            .loadingimg
-                width: 234px
-                height: 187px
-                objec-fit: cover
         .promBook
             .promBookBox
                 display :flex

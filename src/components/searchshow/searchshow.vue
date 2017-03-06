@@ -11,13 +11,14 @@
     import BScroll from 'better-scroll'
     import datalists from '../datalists/datalists.vue'
     import urlObj from '../../common/js/geturl'
+    import loading from '../loading/loading.vue'
     export default {
         data() {
             return{
                 movlists:{},
                 boklists:{},
                 movname:'movies',
-                bokname:'books'
+                bokname:'books',
             }
         },
         methods:{
@@ -25,6 +26,7 @@
                 this.$http.jsonp(urlObj.url+'/v2/movie/search?q='+this.$route.query.q).then(res=>{
                     res.body.name ='电影';
                     this.movlists =res.body;
+
                 });
                 this.$http.jsonp(urlObj.url+'/v2/book/search?q='+this.$route.query.q).then(res=>{
                     res.body.name ='读书';
@@ -38,7 +40,7 @@
             }
         },
         components:{
-            datalists
+            datalists,
         },
         created() {
             this.getlistsdata()

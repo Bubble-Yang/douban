@@ -46,9 +46,7 @@
             <comment :title="title" :commentObj="commentObj" v-if="readableComt"></comment>
             <readable :readableArr="readableArr" v-if="readableComt"></readable>
         </div>
-        <div class="loading" v-else>
-            <img src="../../common/img/loading.gif" class="loading-img">
-        </div>
+        <loading v-else></loading>
     </div>
 </template>
 
@@ -58,6 +56,7 @@
     import BScroll from 'better-scroll'
     import comment from '../comment/comment.vue'
     import readable from '../readable/readable.vue'
+    import loading from '../loading/loading.vue'
 
     export default {
         data() {
@@ -132,7 +131,8 @@
         components:{
             star,
             comment,
-            readable
+            readable,
+            loading
         },
         updated(){
             this.particulars()

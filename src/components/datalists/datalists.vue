@@ -16,7 +16,7 @@
                 </router-link>
             </li>
         </ul>
-        <div class="loading" v-show="minlistsdata == false">
+        <div class="loadings" v-show="minlistsdata == false">
             <img src="../../common/img/loading.gif" class="loadingimg">
         </div>
 
@@ -87,7 +87,7 @@
                         font-size:17px
                     .comtsize
                         color :#aaa
-        .loading
+        .loadings
             width: 100%
             height: 297px
             text-align :center

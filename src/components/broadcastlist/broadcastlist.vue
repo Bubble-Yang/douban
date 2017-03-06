@@ -13,13 +13,15 @@
                         <div class="comt-btm">
                             <p class="text">{{item.status.card.subtitle}}</p>
                             <div v-if="item.status.card.image.large" class="comt-btm-box">
-                                <img :src="'http://shing.imwork.net/proxyImg?url='+item.status.card.image.large.url" alt="" class="comt-btm-img" >
+                                <!--<img :src="'http://shing.imwork.net/proxyImg?url='+item.status.card.image.large.url" alt="" class="comt-btm-img" >-->
+                                <img :src="item.status.card.image.large.url" alt="" class="comt-btm-img" >
                             </div>
                         </div>
                     </div>
                     <div class="comt-activity" v-if="item.status.card==null">
                         <p class="text">{{item.status.text}}</p>
-                        <img :src="'http://shing.imwork.net/proxyImg?url='+item.status.images[0].large.url" alt="" class="activity-img">
+                        <!--<img :src="'http://shing.imwork.net/proxyImg?url='+item.status.images[0].large.url" alt="" class="activity-img">-->
+                        <img :src="item.status.images[0].large.url" alt="" class="activity-img">
                     </div>
                 </div>
                 <div class="info">
