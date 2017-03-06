@@ -6,7 +6,7 @@
         </div>
         <div v-if="paper == 'promBook'" class="promBook">
             <a :href="header.url" class="promBookBox">
-                <img :src="headerImg" alt="" class="promImg">
+                <img :src="'http://shing.imwork.net/proxyImg?url='+headerImg" alt="" class="promImg">
                 <div class="content">
                     <div class="title">
                         <span class="name">{{header.title}}</span>
@@ -25,7 +25,9 @@
                 </li>
             </ul>
         </div>
-
+        <div class="loadings" v-show="moviebooklist == false">
+            <img src="../../common/img/loading.gif" class="loadingimg">
+        </div>
     </div>
 </template>
 
@@ -122,6 +124,14 @@
                     width: 100px
                     .godetails
                         display :block
+        .loadings
+            width: 100%
+            height: 187px
+            text-align :center
+            .loadingimg
+                width: 234px
+                height: 187px
+                objec-fit: cover
         .promBook
             .promBookBox
                 display :flex
